@@ -29,12 +29,32 @@ namespace Snake
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.gameCanvas1 = new GameCanvas();
+            this.SuspendLayout();
+            // 
+            // gameCanvas1
+            // 
+            this.gameCanvas1.BackColor = System.Drawing.Color.White;
+            this.gameCanvas1.Location = new System.Drawing.Point(12, 11);
+            this.gameCanvas1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gameCanvas1.Name = "gameCanvas1";
+            this.gameCanvas1.Size = new System.Drawing.Size(875, 450);
+            this.gameCanvas1.TabIndex = 0;
+            // 
+            // GameForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(895, 469);
+            this.Controls.Add(this.gameCanvas1);
+            this.Name = "GameForm";
             this.Text = "GameForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private GameCanvas gameCanvas1;
     }
 }

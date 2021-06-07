@@ -29,19 +29,29 @@ namespace Snake
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // gameTimer
+            // 
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // GameCanvas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GameCanvas";
-            this.Size = new System.Drawing.Size(1000, 600);
+            this.Size = new System.Drawing.Size(875, 450);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameCanvas_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameCanvas_KeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer gameTimer;
     }
 }
