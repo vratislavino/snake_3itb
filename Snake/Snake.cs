@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Snake
+    public class Snake
     {
         List<SnakePart> parts;
-        int initSize = 3;
+        int initSize = 7;
 
         Color snakeColor;
 
@@ -49,6 +49,36 @@ namespace Snake
         public void Draw(Graphics g)
         {
             parts.ForEach(part => part.Draw(g));
+        }
+
+        public bool Died(int width, int height)
+        {
+            SnakePart head = parts.First();
+            int size = head.Size;
+
+            Point headPos = new Point(head.X, head.Y);
+            // test smrti kvůli nárazu do zdi
+            if(headPos.X < 0 || 
+                headPos.Y < 0 ||
+                headPos.X + size > width || 
+                headPos.Y + size > height) 
+                return true;
+
+            // test smrti kvůli kousnutí
+            if (parts.Exists(part => part.X == head.X && part.Y == head.Y && part != head))
+                return true;
+            
+            return false;
+        }
+
+        public bool Contains(int x, int y)
+        {
+            return parts.Exists(part => part.X == x && part.Y == y);
+        }
+
+        public bool CollidedWithFood(Food food)
+        {
+            return parts.First().X == food.X && parts.First().Y == food.Y;
         }
     }
 }

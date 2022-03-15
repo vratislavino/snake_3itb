@@ -7,35 +7,26 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class SnakePart
+    class SnakePart : Square
     {
-        private int size;
-        private SolidBrush color;
-        private int x;
-        private int y;
-
         private Direction currentDirection = Direction.Right;
         private Direction newDirection = Direction.Right;
 
-        public Direction Direction => newDirection;
-
-        public SnakePart(int size, int x, int y, Color c)
+        public SnakePart(int size, int x, int y, Color c) : base(size, x, y, c)
         {
-            this.size = size;
-            this.x = x;
-            this.y = y;
-            this.color = new SolidBrush(c);
         }
+
+        public Direction Direction => newDirection;
 
         public void Move()
         {
-            if (currentDirection == Direction.Right)
+            if (newDirection == Direction.Right)
                 x += 1;
-            if (currentDirection == Direction.Left)
+            if (newDirection == Direction.Left)
                 x -= 1;
-            if (currentDirection == Direction.Up)
+            if (newDirection == Direction.Up)
                 y -= 1;
-            if (currentDirection == Direction.Down)
+            if (newDirection == Direction.Down)
                 y += 1;
         }
 
@@ -52,7 +43,7 @@ namespace Snake
             currentDirection = newDirection;
         }
 
-        public void Draw(Graphics g) {
+        public override void Draw(Graphics g) {
             g.FillRectangle(color, x * size, y * size, size, size);
             g.DrawRectangle(Pens.Black, x * size, y * size, size, size);
         }
