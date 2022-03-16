@@ -35,7 +35,10 @@ namespace Snake
             {
                 x = rand.Next(width - 1);
                 y = rand.Next(height - 1);
-                if(!snake.Contains(x,y))
+                if(snake.Contains(x,y))
+                {
+                    Console.WriteLine("THIS IS WEIRD...");
+                } else
                 {
                     break;
                 }

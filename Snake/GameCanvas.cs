@@ -78,6 +78,7 @@ namespace Snake
         {
             if(snake.CollidedWithFood(foodSpawner.Food))
             {
+                snake.FoodEaten();
                 foodSpawner.SpawnFood();
             }
         }
@@ -87,7 +88,7 @@ namespace Snake
             if(snake.Died(this.Width, this.Height))
             {
                 gameTimer.Stop();
-                MessageBox.Show("ENDE!");
+                MessageBox.Show("ENDE! Skóre: " + snake.Score);
             }
         }
 

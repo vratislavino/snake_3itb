@@ -15,8 +15,8 @@ namespace Snake
 
         public override void Draw(Graphics g)
         {
-            g.FillEllipse(color, x * size, y * size, size, size);
-            g.DrawEllipse(Pens.Black, x * size, y * size, size, size);
+            g.FillEllipse(color, X * size, Y * size, size, size);
+            g.DrawEllipse(Pens.Black, X * size, Y * size, size, size);
         }
     }
 }

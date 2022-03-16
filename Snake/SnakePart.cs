@@ -18,6 +18,12 @@ namespace Snake
 
         public Direction Direction => newDirection;
 
+        public void InitDirection(Direction d)
+        {
+            currentDirection = d;
+            newDirection = d;
+        }
+
         public void Move()
         {
             if (newDirection == Direction.Right)
@@ -44,8 +50,8 @@ namespace Snake
         }
 
         public override void Draw(Graphics g) {
-            g.FillRectangle(color, x * size, y * size, size, size);
-            g.DrawRectangle(Pens.Black, x * size, y * size, size, size);
+            g.FillRectangle(color, X * size, Y * size, size, size);
+            g.DrawRectangle(Pens.Black, X * size, Y * size, size, size);
         }
     }
 }

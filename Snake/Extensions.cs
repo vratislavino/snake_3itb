@@ -15,5 +15,22 @@ namespace Snake
                 || (dir == Direction.Left && dir2 == Direction.Right)
                 || (dir == Direction.Right && dir2 == Direction.Left);
         }
+
+        public static (int, int) GetDirection(this Direction dir)
+        {
+            if (dir == Direction.Up)
+                return (0, 1);
+
+            if (dir == Direction.Left)
+                return (1, 0);
+
+            if (dir == Direction.Right)
+                return (-1, 0);
+
+            if (dir == Direction.Down)
+                return (0, -1);
+
+            return (0, 0);
+        }
     }
 }

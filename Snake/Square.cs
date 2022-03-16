@@ -14,10 +14,13 @@ namespace Snake
 
         protected SolidBrush color;
         protected int x;
-        public int X => x * size;
+        public int RealX => x * size;
 
         protected int y;
-        public int Y => y * size;
+        public int RealY => y * size;
+
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
 
         public Square(int size, int x, int y, Color c)
         {

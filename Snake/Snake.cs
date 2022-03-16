@@ -10,9 +10,12 @@ namespace Snake
     public class Snake
     {
         List<SnakePart> parts;
-        int initSize = 7;
+        int initSize = 3;
+        
 
         Color snakeColor;
+
+        public int Score => parts.Count - initSize;
 
         public Snake(int size, int x, int y, Color color)
         {
@@ -23,6 +26,16 @@ namespace Snake
             {
                 parts.Add(new SnakePart(size, x - (i+1), y, color));
             }
+        }
+
+        public void FoodEaten()
+        {
+            SnakePart last = parts.Last();
+            var dir = last.Direction.GetDirection();
+            
+            SnakePart sp = new SnakePart(last.Size, last.X + dir.Item1, last.Y + dir.Item2, Color.Red);
+            sp.InitDirection(last.Direction);
+            parts.Add(sp);
         }
 
         public void Move()
@@ -56,7 +69,7 @@ namespace Snake
             SnakePart head = parts.First();
             int size = head.Size;
 
-            Point headPos = new Point(head.X, head.Y);
+            Point headPos = new Point(head.RealX, head.RealY);
             // test smrti kvůli nárazu do zdi
             if(headPos.X < 0 || 
                 headPos.Y < 0 ||
@@ -65,7 +78,7 @@ namespace Snake
                 return true;
 
             // test smrti kvůli kousnutí
-            if (parts.Exists(part => part.X == head.X && part.Y == head.Y && part != head))
+            if (parts.Exists(part => part.RealX == head.RealX && part.RealY == head.RealY && part != head))
                 return true;
             
             return false;
@@ -78,7 +91,7 @@ namespace Snake
 
         public bool CollidedWithFood(Food food)
         {
-            return parts.First().X == food.X && parts.First().Y == food.Y;
+            return parts.First().RealX == food.RealX && parts.First().RealY == food.RealY;
         }
     }
 }
